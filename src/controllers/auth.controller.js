@@ -138,7 +138,8 @@ export const login = catchError(async (req, res, next) => {
                 httpOnly: true
             }).json({
                 "success": true,
-                "message": "Login Successfully."
+                "message": "Login Successfully.",
+                "user":user
             });
 
         } else {
