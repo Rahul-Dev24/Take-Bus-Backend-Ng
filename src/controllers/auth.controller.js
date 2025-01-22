@@ -139,7 +139,7 @@ export const login = catchError(async (req, res, next) => {
             }).json({
                 "success": true,
                 "message": "Login Successfully.",
-                "user":user
+                "token":authToken
             });
 
         } else {
