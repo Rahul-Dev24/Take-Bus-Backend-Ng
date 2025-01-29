@@ -18,8 +18,6 @@ export const getUserPage = catchError(async (req, res, next) => {
 
 export const imageUpload = catchError(async (req, res, next) => {
     const { file } = req.body;
-    console.log(req.body);
-
     try {
         if (!file) return next(new ErrorHandeler("File is Required.", 400));
         const newFile = await ImageModel.create(file);
