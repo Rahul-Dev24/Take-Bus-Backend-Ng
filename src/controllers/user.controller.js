@@ -1,5 +1,5 @@
-import { catchError } from "../middlewares/Error.middleware";
-import User from "../models/user.model";
+import { catchError } from "../middlewares/Error.middleware.js";
+import User from "../models/user.model.js";
 
 export const updateUser = catchError(async (req, res, next) => {
     try {
