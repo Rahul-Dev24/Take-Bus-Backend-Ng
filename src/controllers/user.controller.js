@@ -29,7 +29,7 @@ export const getUserData = catchError(async (req, res, next) => {
     try {
         const user = await User.findOne({ _id: req.user._id });
         if (!user) return next(new ErrorHandeler("Something went wrong. Please login again.", 401));
-        const profileImg = Image.findOne({ _id: user.profileImg });
+        const profileImage = Image.findOne({ _id: user.profileImg });
         res.status(200).json({
             success: true,
             data: {
