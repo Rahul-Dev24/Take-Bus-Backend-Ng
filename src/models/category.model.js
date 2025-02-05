@@ -7,8 +7,7 @@ const categoryModel = new mongoose.Schema({
         unique: true
     },
     imgage: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Image',
+        type: String,
         default: null
     },
     status: {
