@@ -31,7 +31,7 @@ export const addCategory = catchError(async (req, res, next) => {
         const category = new Category({
             name,
             image: image || null,
-            status.
+            status,
             imgId
         });
         await category.save();
