@@ -14,7 +14,7 @@ const categoryModel = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref:"Image",
         default: null
-    }
+    },
     status: {
         type: Boolean,
         require: true
