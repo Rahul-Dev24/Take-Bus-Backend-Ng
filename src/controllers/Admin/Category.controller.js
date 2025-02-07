@@ -30,7 +30,7 @@ export const addCategory = catchError(async (req, res, next) => {
         if (!name) return next(new ErrorHandeler("All Feilds are required.", 401));
         const category = new Category({
             name,
-            image: image || null,
+            image,
             status,
             imgId
         });
@@ -49,13 +49,17 @@ export const editCategory = catchError(async (req, res, next) => {
         const _id = req?.params?._id;
         const { name, image, status, imgId } = req?.body;
         if (!name || !_id) return next(new ErrorHandeler("All Feilds are required.", 401));
-        await Category.updateOne({ _id }, {
-            $set: {
-                name,
-                image: image || null,
+        const obj = image && imgId ? {
+             name,
+                image,
                 status,
                 imgId
-            }
+        } : {
+             name,
+                status,
+        } ;
+        await Category.updateOne({ _id }, {
+            $set: {...obj}
         });
         res.status(200).json({
             success: true,
