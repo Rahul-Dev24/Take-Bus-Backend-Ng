@@ -21,10 +21,6 @@ const busSchema = new mongoose.Schema({
     registrationNo: {
         type: String,
         require: [true, "Registration No is Required."]
-    },
-    driverId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Driver"
     }
 }, { timestamps: true });
 

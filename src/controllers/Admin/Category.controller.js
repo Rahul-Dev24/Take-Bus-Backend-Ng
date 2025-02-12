@@ -50,16 +50,16 @@ export const editCategory = catchError(async (req, res, next) => {
         const { name, image, status, imgId } = req?.body;
         if (!name || !_id) return next(new ErrorHandeler("All Feilds are required.", 401));
         const obj = image && imgId ? {
-             name,
-                image,
-                status,
-                imgId
+            name,
+            image,
+            status,
+            imgId
         } : {
-             name,
-                status,
-        } ;
+            name,
+            status,
+        };
         await Category.updateOne({ _id }, {
-            $set: {...obj}
+            $set: { ...obj }
         });
         res.status(200).json({
             success: true,
