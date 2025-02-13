@@ -104,4 +104,3 @@ export const updateTrip = catchError(async (req, res, next) => {
         next(error);
     }
 });
-
