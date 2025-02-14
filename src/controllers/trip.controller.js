@@ -61,7 +61,7 @@ export const createTrip = catchError(async (req, res, next) => {
     try {
         const partnerId = req?.user?._id;
         const { route, tripDate, driverId, busId, featues } = req.body;
-        if (route?.length < 1 || !tripDate || !busId) return next(new ErrorHandeler("All fields are required.", 400));
+        if (route?.length < 1 || !tripDate || !busId) return next(new errorHandeler("All fields are required.", 400));
 
         const trip = new Trip({
             partnerId,

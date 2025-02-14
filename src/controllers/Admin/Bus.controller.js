@@ -27,7 +27,7 @@ export const createBus = catchError(async (req, res, next) => {
 
 export const updateBus = catchError(async (req, res, next) => {
     try {
-        const { brand, model, seatCapacity, registrationNo } = req?.body;
+        const { brand, model, seatCapacity, registrationNo, status } = req?.body;
         const _id = req?.params?._id;
         if (!_id || !brand || !model || !seatCapacity || !registrationNo) return next(new ErrorHandeler("All fields are required.", 400));
 
@@ -37,6 +37,7 @@ export const updateBus = catchError(async (req, res, next) => {
                 model,
                 seatCapacity,
                 registrationNo,
+                status
             }
         });
 
@@ -47,6 +48,26 @@ export const updateBus = catchError(async (req, res, next) => {
 
     } catch (err) {
         next(err);
+    }
+});
+
+export const getBusById = catchError(async (req, res, next) => {
+    try {
+        const _id = req?.params?._id;
+        if (!_id) return next(new ErrorHandeler("Bus Id is required.", 400));
+        const bus = await Bus.findById(_id);
+        return res?.status(200).json(response(true, "Bus Get By ID", bus));
+    } catch (error) {
+        next(error);
+    }
+});
+
+export const getActiveBus = catchError(async (req, res, next) => {
+    try {
+        const bus = await Bus.find({ status: true });
+        return res?.status(200).json(response(true, "Bus Get By ID", bus));
+    } catch (error) {
+        next(error);
     }
 });
 

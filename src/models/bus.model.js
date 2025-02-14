@@ -21,6 +21,10 @@ const busSchema = new mongoose.Schema({
     registrationNo: {
         type: String,
         require: [true, "Registration No is Required."]
+    },
+    status: {
+        type: Boolean,
+        default: true
     }
 }, { timestamps: true });
 
