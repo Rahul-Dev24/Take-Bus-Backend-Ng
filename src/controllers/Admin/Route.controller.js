@@ -21,10 +21,14 @@ export const searchRoute = catchError(async (req, res, next) => {
         const query = req.params.query;
         const count = 10;
         const regex = new RegExp(query, "i");
-        const data = await Route.find({
-            $or: [{ city: { $regex: regex } }, { country: { $regex: regex } }]
-        }).limit(count);
-        res.status(200).json(response(true, "Search Route.", data));
+        if (query) {
+            const data = await Route.find({
+                $or: [{ city: { $regex: regex } }, { country: { $regex: regex } }]
+            }).limit(count);
+            return res.status(200).json(response(true, "Search Route.", data));
+        }
+        const data = await Route.find().limit(count);
+        res.status(200).json(response(true, "Search Route.", data))
     } catch (err) {
         next(err)
     }
