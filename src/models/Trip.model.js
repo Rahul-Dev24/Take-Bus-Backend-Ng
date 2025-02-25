@@ -11,10 +11,12 @@ const tripSchema = new mongoose.Schema({
         ref: "Bus",
         require: [true, "Bus id is required."]
     },
+    source: String,
+    destination: String,
     route: {
         type: [{
-            source: String,
-            destination: String,
+             source: String,
+    destination: String,
             startTime: {
                 type: Date,
                 require: [true, "Start Time is required."],
