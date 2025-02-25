@@ -10,6 +10,7 @@ import userRoute from "./routers/user.route.js";
 import categoryRoutes from "./routers/Admin/category.route.js"
 import busRoutes from "./routers/bus.route.js";
 import tripRoutes from "./routers/trip.route.js";
+import routeRoute from "./routers/Admin/Route.route.js";
 const app = express();
 
 config();
@@ -27,13 +28,15 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+const apiVersion = "/api/v1";
 
-app.use("/api/v1", authRoutes);
-app.use("/api/v1", commonRoute);
-app.use("/api/v1", userRoute);
-app.use("/api/v1/admin", categoryRoutes);
-app.use("/api/v1/bus", busRoutes);
-app.use("/api/v1/trip", tripRoutes);
+app.use(apiVersion, authRoutes);
+app.use(apiVersion, commonRoute);
+app.use(apiVersion, userRoute);
+app.use(`${apiVersion}/admin`, categoryRoutes);
+app.use(`${apiVersion}/bus`, busRoutes);
+app.use(`${apiVersion}/trip`, tripRoutes);
+app.use(`${apiVersion}/route`, routeRoute);
 
 app.listen(process.env.PORT, () => {
     console.log(`Server listening on ${process.env.PORT} port`);
