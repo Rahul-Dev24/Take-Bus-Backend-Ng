@@ -27,7 +27,7 @@ export const searchRoute = catchError(async (req, res, next) => {
             }).limit(count);
             return res.status(200).json(response(true, "Search Route.", data));
         }
-        const data = await Route.find().limit(count);
+        const data = await Route.find({ country: "India" }).limit(count);
         res.status(200).json(response(true, "Search Route.", data))
     } catch (err) {
         next(err)
