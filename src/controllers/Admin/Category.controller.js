@@ -3,7 +3,7 @@ import Category from "../../models/category.model.js"
 
 export const getCategory = catchError(async (req, res, next) => {
     try {
-        const status = req.body.status;
+        const status = req.query.status;
         const page = parseInt(req.query.page) || 1; // Current page (default: 1)
         const limit = parseInt(req.query.limit) || 10; // Items per page (default: 10)
 
