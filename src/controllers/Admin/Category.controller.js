@@ -3,11 +3,12 @@ import Category from "../../models/category.model.js"
 
 export const getCategory = catchError(async (req, res, next) => {
     try {
+        const status = req.query.status;
         const page = parseInt(req.query.page) || 1; // Current page (default: 1)
         const limit = parseInt(req.query.limit) || 10; // Items per page (default: 10)
 
         const total = await Category.countDocuments(); // Total number of categories
-        const allCategory = await Category.find()
+        const allCategory = await Category.find(status ? { status } : {})
             .skip((page - 1) * limit) // Skip items of previous pages
             .limit(limit); // Limit the number of items per page
         if (!allCategory) return next(new ErrorHandeler("Category Not Found.", 401));
