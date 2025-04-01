@@ -8,7 +8,7 @@ export const getCategory = catchError(async (req, res, next) => {
         const limit = parseInt(req.query.limit) || 10; // Items per page (default: 10)
 
         const total = await Category.countDocuments(); // Total number of categories
-        const allCategory = await Category.find(status ? { status } : {})
+        const allCategory = await Category.find(status == true || status == false ? { status } : {})
             .skip((page - 1) * limit) // Skip items of previous pages
             .limit(limit); // Limit the number of items per page
         if (!allCategory) return next(new ErrorHandeler("Category Not Found.", 401));
